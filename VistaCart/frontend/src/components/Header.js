@@ -35,7 +35,8 @@ const Header = () => {
             </div>
           </div>
           <Link to="/" className="cart-link">Cart</Link>
-          <Link to="/Login" className="login-link">Sign Up/Login</Link>
+            <Link to="/Login" className="login-link">Sign Up/Login</Link>
+            <Link to="/ContactUs" className="login-link">Contact Us</Link>
         </nav>
     </header>
             

@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 20px;
-    background-color: #000000;
+    background-color: #3E4450;
     color: white;
 }
 .header-container {
@@ -70,7 +70,7 @@
 .categories-dropdown .categories-content {
     display: none;
     position: absolute;
-    background-color: #000000;
+    background-color: #3E4450;
     min-width: 200px;
     z-index: 1;
 }

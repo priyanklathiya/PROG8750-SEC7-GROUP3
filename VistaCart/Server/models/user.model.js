@@ -14,6 +14,7 @@ const userSchema = new Schema({
     email: { type: String, unique: true, trim: true },
     mobilenumber: { type: String },
     password: { type: String },
+    userType: {type: String, enum: ["customer", "admin", "seller"]}
 });
 
 userSchema.pre('save',function(next){    // mongoose preprocess

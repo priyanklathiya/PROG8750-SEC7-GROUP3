@@ -2,12 +2,13 @@
 const productmodel = require('../models/product.model');
 
 const getAllProducts = async (req, res) => { 
-    res.status(200).json({ msg: "all products received" });
+    const allProducts = await productmodel.find({});
+    res.status(200).json({ allProducts });
 };
 
 const addProduct = async (req, res) => { 
     try {
-        console.log(req.body);
+        // console.log(req.body);
 
         await productmodel.create({
         sku: req.body.sku,
@@ -24,8 +25,7 @@ const addProduct = async (req, res) => {
         })
     } catch (error) {
         res.status(200).json({ msg: "Error: Product could not be added", err: error, status: 0 });
-    }
-    
+    }    
 };
 
 module.exports = {getAllProducts, addProduct}

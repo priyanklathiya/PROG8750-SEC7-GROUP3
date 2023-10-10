@@ -9,7 +9,7 @@ mongoose.Promise = global.Promise;
 
 // product schema
 const productSchema = new Schema({
-    sku: { type: String, required: true, default: 'default', unique: true, trim: true },
+    sku: { type: String, required: true, unique: true, trim: true },
     productName: { type: String, required: true, default: 'default' },
     productDescription: { type: String },
     quantity: { type: Number },
