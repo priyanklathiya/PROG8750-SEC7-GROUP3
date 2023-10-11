@@ -30,11 +30,13 @@ function Login() {
       email: email,
       password: password
     }
+    
+    axios.defaults.withCredentials = true;
 
     axios.post("http://localhost:8080/api/users/login", userData)
       .then((response) => {
         window.scrollTo(0, 0);
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           if (response.data.status === 1) {
           // alert('Account created successfully.');
@@ -47,6 +49,7 @@ function Login() {
 
             // redirect to home
             history("/");
+            window.location.reload();
           } else {
             setIsSuccess(false);
             setIsFailed(true);
@@ -62,7 +65,7 @@ function Login() {
 
   };
   return (
-      <>
+      <main>
         <div className="container">
           <div className="row justify-content-center">
           <div className="col-md-4">
@@ -115,7 +118,7 @@ function Login() {
             </div>
           </div>
         </div>
-      </>
+      </main>
   )
 }
 

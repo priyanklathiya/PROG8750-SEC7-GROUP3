@@ -42,8 +42,11 @@ const login = async (req, res) => {
                     bcrypt.compare(password, userFound.password, (error, same) => {
                         if (same) {
                             //console.log(userFound._id);
-                            req.session.userId = userFound._id;
+                            
+                            req.session.userId = userFound._id.toString();
                             req.session.userType = userFound.userType;
+                            // console.log(req.session.userId);
+                            // console.log(req.session.userType);
                             res.status(200).json({ msg: "Login Successful", status: 1 });
                         } else {
                             res.status(200).json({ msg: "Password incorrect. Please try again with different password or try resetting a new password.", status: 0 });

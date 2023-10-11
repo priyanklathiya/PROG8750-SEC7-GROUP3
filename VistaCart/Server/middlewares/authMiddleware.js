@@ -1,14 +1,19 @@
 const User = require('../models/user.model.js')
 
-userAuth = (req,res, next) => {
-    User.findById(req.session.userId)
-        .then((user) => { 
-            res.status(200).json({ msg: "Login Successful", userType: req.session.userType, userId: req.session.userId });
-        })
-    .catch((err) => {
+const sessionUser = (req, res) => {
+    console.log(req.session);
+    // console.log(req.session.userType);
+    try {
+        if (req.session.userId) {
+            res.status(200).json({ valid: true, userType: req.session.userType, userId: req.session.userId });
+        } else {
+            res.status(200).json({ valid: false });
+        }
+    }
+    catch(err){
         console.error(err);
-    });
-    next();
+        res.json({ valid: false, err:err });  
+    }
 }
 
-module.exports = {userAuth:userAuth};
+module.exports = {sessionUser};

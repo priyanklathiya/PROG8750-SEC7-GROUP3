@@ -5,7 +5,7 @@ import Logo from '../images/vistacartlogomini.png';
 function ContactUs() {
 
     return (
-      <>
+      <main>
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-sm-10">
@@ -53,7 +53,7 @@ function ContactUs() {
             </div>
           </div>
         </div>
-      </>
+      </main>
   )
 }
 

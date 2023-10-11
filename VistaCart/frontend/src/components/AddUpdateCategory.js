@@ -56,7 +56,7 @@ function AddUpdateCategory() {
     }
 
     return (
-        <>
+        <main>
             <div className='container mt-5'>
                  {isSuccess && (
                     <div className="alert alert-success m-3" role="alert">
@@ -99,7 +99,7 @@ function AddUpdateCategory() {
 
                 </form>
             </div>
-        </>
+        </main>
     )
 }
 

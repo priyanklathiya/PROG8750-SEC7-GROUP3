@@ -6,32 +6,26 @@ import { Carousel } from 'react-responsive-carousel';
 import header1 from '../images/HomeCarousel_3.jpg';
 import header2 from '../images/homecarousel2.jpg';
 import header3 from '../images/homecarousel3.avif';
+import axios from "axios";
 
 
 
 function Home() {
 
-  //   const [imageSrc, setImageSrc] = useState('');
+  // check user session from server using axios
+  const [userSession, setUserSession] = useState(false);
 
   // useEffect(() => {
-  //   // Fetch the image from the backend API
-  //   fetch('http://localhost:3000/Images/shoes_123123.png')
-  //     .then(response => {
-  //       if (!response.ok) {
-  //         throw new Error('Network response was not ok');
-  //       }
-  //       return response.blob();
-  //     })
-  //     .then(blob => {
-  //       const imageSrc = URL.createObjectURL(blob);
-  //       setImageSrc(imageSrc);
-  //     })
-  //     .catch(error => console.error('Error fetching image:', error));
-  // }, []);
+  //   axios.get("http://localhost:8080/auth/userSession")
+  //     .then((response) => {
+  //       // setUserSession(!!(response && response.data));
+  //       console.log(response)
+  //      })
+  // }, [])
 
 
   return (
-    <>
+    <main>
       <Carousel dynamicHeight="false" autoPlay="true" infiniteLoop="true" interval="1500" showThumbs="false">
         <div>
             <img src={header1} alt='carouselimage1' />
@@ -112,7 +106,7 @@ function Home() {
         </div>
         
         </div>
-    </>
+    </main>
   )
 }
 

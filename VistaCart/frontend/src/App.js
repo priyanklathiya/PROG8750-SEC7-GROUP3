@@ -9,6 +9,9 @@ import Signup from './components/Signup.js';
 import ContactUs from './components/ContactUs.js';
 import Categories from './components/Categories.js';
 import AddUpdateCategory from './components/AddUpdateCategory.js';
+import AddUpdateProduct from './components/AddUpdateProduct.js';
+import ViewProduct from './components/ViewProduct.js';
+import AdminDashboard from './components/AdminDashboard.js';
 
 function App() {
   const HeaderFooterRoute = () => (
@@ -39,6 +42,12 @@ function App() {
             <Route path="/Categories" element={<Categories />} />
 
             <Route path="/AddUpdateCategory" element={<AddUpdateCategory />} />
+
+            <Route path="/viewProducts" element={<ViewProduct />} />
+
+            <Route path="/addProduct" element={<AddUpdateProduct />} />
+            
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
             
           </Route>
         

@@ -6,38 +6,9 @@ const bodyParser = require('body-parser');
 const expressSession = require('express-session');
 const cookieParser = require('cookie-parser');
 
+
+// database connection
 require('dotenv').config();
-
-const app = new express();
-app.use(express.static(path.resolve(__dirname + '/public')))
-
-const port = process.env.PORT || 8080;
-
-app.use(cors());
-app.use(bodyParser.urlencoded())
-app.use(express.json());
-
-// global session variable
-
-app.use(expressSession({
-    secret: 'session key abc', // secret key used to encrypt the session cookie
-    cookie: {
-        secure: false,
-        maxAge: 1000 * 60 * 60 * 24
-    }
-}));
-
-global.userSessionId = null;
-global.UserType = null;
-
-app.use("*",(req,res,next)=>{
-    userSessionId = req.session.userId;
-    UserType = req.session.UserType;
-    next();
-})
-
-
-
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri,
      { useNewUrlParser: true, useUnifiedTopology: true })
@@ -46,8 +17,50 @@ mongoose.connect(uri,
         console.error(err);
     });
 
+
+const app = new express();
+app.use(express.static(path.resolve(__dirname + '/public')))
+
+const port = process.env.PORT || 8080;
+
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["POST", "GET"],
+    credentials: true
+}));
+app.use(bodyParser.urlencoded())
+app.use(express.json());
+app.use(cookieParser());
+
+
+// global session variable
+
+app.use(expressSession({
+    secret: 'session key abc', // secret key used to encrypt the session cookie
+    // cookie: {
+    //     secure: false,
+    //     maxAge: 1000 * 60 * 60 * 24
+    // }
+}));
+
+global.userId = null;
+global.userType = null;
+
+app.use("*",(req,res,next)=>{
+    userId = req.session.userId;
+    userType = req.session.userType;
+    next();
+})
+
+
+
 // image path
 app.use('/Images', express.static('Images'));
+
+// Middlewares
+const authentication = require('./middlewares/authMiddleware');
+
+app.get('/auth/userSession', authentication.sessionUser);
 
 //  routers of the application
 const productRoutes = require('./routes/products');
