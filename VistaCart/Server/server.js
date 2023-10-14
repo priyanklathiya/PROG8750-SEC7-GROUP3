@@ -61,6 +61,7 @@ app.use('/Images', express.static('Images'));
 const authentication = require('./middlewares/authMiddleware');
 
 app.get('/auth/userSession', authentication.sessionUser);
+app.get('/auth/logout', authentication.logout);
 
 //  routers of the application
 const productRoutes = require('./routes/products');

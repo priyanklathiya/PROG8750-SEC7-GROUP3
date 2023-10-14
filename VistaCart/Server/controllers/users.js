@@ -47,7 +47,15 @@ const login = async (req, res) => {
                             req.session.userType = userFound.userType;
                             // console.log(req.session.userId);
                             // console.log(req.session.userType);
-                            res.status(200).json({ msg: "Login Successful", status: 1 });
+                            let varusertype = 1;
+                            if (userFound.userType == "admin") {
+                                varusertype = 3;
+                            } else if (userFound.userType == "seller") {
+                                varusertype = 2;
+                            } else {
+                                varusertype = 1;                                
+                            }
+                            res.status(200).json({ msg: "Login Successful", status: 1, userType: varusertype});
                         } else {
                             res.status(200).json({ msg: "Password incorrect. Please try again with different password or try resetting a new password.", status: 0 });
                         }

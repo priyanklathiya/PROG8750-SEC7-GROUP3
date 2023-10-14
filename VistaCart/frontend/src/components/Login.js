@@ -47,9 +47,18 @@ function Login() {
             setEmail("");
             setPassword("");
 
+            // console.log(response.data);
+            // return false;
             // redirect to home
-            history("/");
-            window.location.reload();
+            if (response.data.userType == 2) {
+              window.location.href = '/';  
+            } else if (response.data.userType == 3) {
+              window.location.href = '/adminDashboard';  
+            } else {
+              window.location.href = '/';  
+            }
+            // history("/");
+            // window.location.reload();
           } else {
             setIsSuccess(false);
             setIsFailed(true);

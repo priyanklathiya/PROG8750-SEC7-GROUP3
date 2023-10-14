@@ -45,9 +45,9 @@ const Header = () => {
   };
 
     const logout = () => {
-    axios.post('http://localhost:8080/auth/logout')
+    axios.get('http://localhost:8080/auth/logout')
       .then(response => {
-        console.log('Logout successful');
+        console.log(response);
         setUserType(0);  // userType 0 means not logged in
         window.location.href = '/';  // Redirect to home page after successful logout
       })
