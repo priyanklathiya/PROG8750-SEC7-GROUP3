@@ -20,7 +20,7 @@ const Header = () => {
     axios.get("http://localhost:8080/auth/userSession")
       .then((response) => {
         // setUserSession(!!(response && response.data));
-        console.log(response)
+        // console.log(response)
         if (response.data) {
           if (response.data.valid == true) {
             if (response.data.userType == "seller") {
@@ -47,7 +47,7 @@ const Header = () => {
     const logout = () => {
     axios.get('http://localhost:8080/auth/logout')
       .then(response => {
-        console.log(response);
+        // console.log(response);
         setUserType(0);  // userType 0 means not logged in
         window.location.href = '/';  // Redirect to home page after successful logout
       })
@@ -74,13 +74,13 @@ const Header = () => {
           
           <nav className={`nav-links ${isNavVisible ? 'visible' : ''}`}>
 
-            {userType == 3 && (
+            {userType == 3 ? (
               <Link to="/adminDashboard">AdminDashboard</Link>
-            )}
+            ) : ""}
 
             {userType === 0 || userType === 1 ? <Link to="/">Home</Link> : "" }
 
-            {userType === 0 || userType === 1 && (
+            {(userType === 0 || userType === 1) ? (
               <div className="categories-dropdown">
                 <button className="categories-button">Categories</button>
                 <div className="categories-content">
@@ -88,9 +88,9 @@ const Header = () => {
                   <Link to="/" className="category-link">Women</Link>
                 </div>
               </div>
-            )}
+            ) : ""}
             
-            {userType == 3 && (
+            {(userType == 3) ? (
               <div className="categories-dropdown">
               <button className="categories-button">Products</button>
               <div className="categories-content">
@@ -98,23 +98,23 @@ const Header = () => {
                 <Link to="/addProduct" className="category-link">Add</Link>
               </div>
             </div>
-            )}
+            ) : ""}
 
-            {userType === 0 || userType === 1 && (
+            {userType === 0 || userType === 1 ? (
               <Link to="/" className="cart-link">Cart</Link>
-            )}
+            ) : ""}
 
-            {userType != 0 && (
+            {userType != 0 ? (
               <a href="#" onClick={logout} className="login-link">Logout</a>
-            )}
+            ) : ""}
 
-            {userType == 0 && (
+            {userType == 0 ? (
               <Link to="/Login" className="login-link">Sign Up/Login</Link>              
-            )}
+            ) : ""}
 
-            {userType != 3 && (
+            {userType != 3 ? (
               <Link to="/ContactUs" className="login-link">Contact Us</Link>
-            )}
+            ) : ""}
 
         </nav>
     </header>

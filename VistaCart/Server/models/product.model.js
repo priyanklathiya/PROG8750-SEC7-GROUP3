@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt');
 
 // connection string can be found in server.js
 

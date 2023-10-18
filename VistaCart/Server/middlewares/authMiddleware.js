@@ -1,7 +1,7 @@
 const User = require('../models/user.model.js')
 
 const sessionUser = (req, res) => {
-    console.log(req.session);
+    // console.log(req.session);
     // console.log(req.session.userType);
     try {
         if (req.session.userId) {
@@ -11,13 +11,13 @@ const sessionUser = (req, res) => {
         }
     }
     catch(err){
-        console.error(err);
+        // console.error(err);
         res.json({ valid: false, err:err });  
     }
 }
 
 const logout = (req, res) => {
-    console.log(req.session);
+    // console.log(req.session);
     // console.log(req.session.userType);
     try {
         req.session.destroy(() => {

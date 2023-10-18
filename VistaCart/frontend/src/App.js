@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import 'font-awesome/css/font-awesome.min.css';
 import Header from './components/Header.js';
 import Footer from './components/footer.js';
@@ -9,11 +9,54 @@ import Signup from './components/Signup.js';
 import ContactUs from './components/ContactUs.js';
 import Categories from './components/Categories.js';
 import AddUpdateCategory from './components/AddUpdateCategory.js';
+import AddUpdateSubCategory from './components/AddUpdateSubCategory.js';
 import AddUpdateProduct from './components/AddUpdateProduct.js';
 import ViewProduct from './components/ViewProduct.js';
 import AdminDashboard from './components/AdminDashboard.js';
+import Products from './components/products.js';
+import SubCategories from './components/SubCategories.js';
+import Brands from './components/Brands.js';
+import AddUpdateBrand from './components/AddUpdateBrand.js';
+import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
 function App() {
+
+  // const [userType, setUserType] = useState(0);
+  //   useEffect(() => {
+    
+  //   axios.get("http://localhost:8080/auth/userSession")
+  //     .then((response) => {
+  //       // setUserSession(!!(response && response.data));
+  //       // console.log(response)
+  //       if (response.data) {
+  //         if (response.data.valid == true) {
+  //           if (response.data.userType == "seller") {
+  //             setUserType(2);
+  //           } else if (response.data.userType == "admin") {
+  //             setUserType(3);              
+  //           } else {
+  //             // customer
+  //             setUserType(1);
+  //           }
+  //         } else {
+  //           setUserType(0);
+  //         } 
+  //       } else {
+  //         setUserType(0);
+  //       }
+  //      })
+  //   }, [])
+  
+  //   const AdminDashboardRoute = () => {
+  //   if (userType === 3) {
+  //     return <AdminDashboard />;
+  //   } else {
+  //     // Redirect to another page or display a message for unauthorized access
+  //     return <Navigate to="/" />;
+  //   }
+  // }; 
+
   const HeaderFooterRoute = () => (
   <>
     <Header />
@@ -22,9 +65,10 @@ function App() {
 );
   return (
     <div className="App">
-              <BrowserRouter>
-          <Routes>
-            
+      <BrowserRouter>
+        
+        <Routes>
+          
             <Route path="/" element={<HeaderFooterRoute />}>
 
             <Route index element={<Home />} />
@@ -39,21 +83,32 @@ function App() {
 
             <Route path="/ContactUs" element={<ContactUs />} />
 
+            <Route path="/viewProducts" element={<ViewProduct />} />
+
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
+            
             <Route path="/Categories" element={<Categories />} />
 
             <Route path="/AddUpdateCategory" element={<AddUpdateCategory />} />
 
-            <Route path="/viewProducts" element={<ViewProduct />} />
+            <Route path="/Products" element={<Products />} />
+
+            <Route path="/SubCategories" element={<SubCategories />} />
+            
+            <Route path="/Brands" element={<Brands />} />
 
             <Route path="/addProduct" element={<AddUpdateProduct />} />
-            
-            <Route path="/adminDashboard" element={<AdminDashboard />} />
-            
+
+            <Route path="/AddUpdateSubCategory" element={<AddUpdateSubCategory />} />
+
+            <Route path="/AddUpdateBrand" element={<AddUpdateBrand />} />
+
           </Route>
         
         </Routes>
 
-        </BrowserRouter>
+      </BrowserRouter>
+      
     </div>
   );
 }

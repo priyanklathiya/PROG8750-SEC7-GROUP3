@@ -2,21 +2,21 @@ import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useLocation } from 'react-router-dom'
-function AddUpdateCategory() {
+function AddUpdateBrand() {
   const location = useLocation()
-  const { type, catName, catId } = location.state
+  const { type, bName, bId } = location.state
 // new or update
 
     const [formErrors, setFormErrors] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isFailed, setIsFailed] = useState(false);
-    const [categoryName, setCategoryName] = useState("");
+    const [brandName, setBrandName] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
 
     const HandleSubmitEvent = (e) => {
         e.preventDefault();
         const formErrors = {
-            categoryName: !categoryName
+            brandName: !brandName
         };
 
         setIsSuccess(false);
@@ -26,11 +26,11 @@ function AddUpdateCategory() {
         if (Object.values(formErrors).some((v) => v)) return;
 
         const formData = new FormData();
-        formData.append("categoryName", categoryName);
+        formData.append("brandName", brandName);
 
         if (type == "new") {
             // new
-            axios.post("http://localhost:8080/api/category/addCategory", formData,{headers:{"Content-Type" : "application/json"}})
+            axios.post("http://localhost:8080/api/brands/addBrand", formData,{headers:{"Content-Type" : "application/json"}})
                 .then((response) => { 
                     window.scrollTo(0, 0);
                     if (response.status === 200) {
@@ -38,7 +38,7 @@ function AddUpdateCategory() {
                             setIsSuccess(true);
                             setIsFailed(false);
                             setSuccessMsg(response.data.msg);
-                            setCategoryName("");
+                            setBrandName("");
                         }
                         else {
                             setIsSuccess(false);
@@ -57,9 +57,8 @@ function AddUpdateCategory() {
                 })
         } else if(type == "update"){
             //update
-        formData.append("categoryId", catId);
-
-                    axios.post("http://localhost:8080/api/category/updateCategory", formData,{headers:{"Content-Type" : "application/json"}})
+            formData.append("brandId", bId);
+            axios.post("http://localhost:8080/api/brands/updateBrand", formData, { headers: { "Content-Type": "application/json" } })
             .then((response) => { 
                 window.scrollTo(0, 0);
                 if (response.status === 200) {
@@ -88,9 +87,9 @@ function AddUpdateCategory() {
 
     useEffect(() => {
         if (type == "update") {
-            // get category details here and fill the form fields
+            // get brand details here and fill the form fields
 
-            setCategoryName(catName);
+            setBrandName(bName);
         }
     }, [type]);
 
@@ -109,22 +108,22 @@ function AddUpdateCategory() {
                     </div>
                 )}
 
-                <h2>Add / Update Category</h2>
+                <h2>Add / Update Brand</h2>
                 <hr/>
                 <form onSubmit={HandleSubmitEvent}  method="post" encType="multipart/form-data">
                     <div className="form-group  col-sm-6">
-                        <label htmlFor="categoryName">Category Name: </label><br/>
+                        <label htmlFor="brandName">Brand Name: </label><br/>
                         <input type="text"
-                            className={`form-control ${formErrors && (formErrors?.categoryName ? "is-invalid" : "is-valid")}`}
-                            id="categoryName"
-                            name="categoryName"
-                            value={categoryName}
-                            onChange={(e) => {setCategoryName(e.currentTarget.value);}}
-                            placeholder="Enter category name" />
-                        <div className="invalid-feedback">Please enter correct category name</div>
+                            className={`form-control ${formErrors && (formErrors?.brandName ? "is-invalid" : "is-valid")}`}
+                            id="brandName"
+                            name="brandName"
+                            value={brandName}
+                            onChange={(e) => {setBrandName(e.currentTarget.value);}}
+                            placeholder="Enter Brand name" />
+                        <div className="invalid-feedback">Please enter correct Brand name</div>
                     </div>
                     <button type="submit" className="btn btn-primary mt-2">Submit</button> &nbsp;
-                    <Link to="/Categories">
+                    <Link to="/Brands">
                         <button className='btn btn-danger  mt-2'>
                             Go Back
                         </button>
@@ -136,4 +135,4 @@ function AddUpdateCategory() {
     )
 }
 
-export default AddUpdateCategory
+export default AddUpdateBrand

@@ -1,11 +1,12 @@
-const categorymodel = require('../models/categories.model');
+const subcategorymodel = require('../models/subcategories.model');
 
-const addCategory = async (req, res) => { 
+const addSubCategory = async (req, res) => { 
     try {
         // console.log(req.body);
         
-        await categorymodel.create({
-            categoryName: req.body.categoryName
+        await subcategorymodel.create({
+            subcategoryName: req.body.subcategoryName,
+            categoryId: req.body.categoryId
         }).then(() => {
             res.status(200).json({ msg: "Data inserted successfully.", status: 1 });
         });
@@ -14,15 +15,15 @@ const addCategory = async (req, res) => {
     }    
 };
 
-const getAllCategory = async (req, res) => { 
-    const allCategory = await categorymodel.find({});
-    res.status(200).json({ allCategory });
+const getAllSubCategory = async (req, res) => { 
+    const allSubCategory = await subcategorymodel.find({});
+    res.status(200).json({ allSubCategory });
 };
 
-const deleteCategory = async (req, res) => {
+const deleteSubCategory = async (req, res) => {
     // console.log(req.body)
     try {
-        await categorymodel.findOneAndDelete({ _id: req.body.categoryId })
+        await subcategorymodel.findOneAndDelete({ _id: req.body.subcategoryId })
             
             .then((data) => {
                 if (data) {
@@ -38,27 +39,16 @@ const deleteCategory = async (req, res) => {
     } catch (error) {
         // console.log(error);
         res.status(400).json({ msg: "Error: Category cannot be deleted", err: error, status: 0 });
-    }
-
-        
-    //     , function (err, docs) {
-    //     if (err) {
-    //         console.log(err)
-    //         res.status(200).json({ msg: "Data deleted successfully.", status: 1 });
-    //     }
-    //     else {
-    //         res.status(200).json({ msg: "Error: Data could not be deleted", err: err, status: 0 });
-    //     }
-    // })
-    
+    } 
 }
 
-const updateCategory = async (req, res) => { 
+const updateSubCategory = async (req, res) => { 
     try {
-        console.log(req.body);
+        // console.log(req.body);
         
-        await categorymodel.findOneAndUpdate({ _id: req.body.categoryId }, {
-            categoryName: req.body.categoryName
+        await subcategorymodel.findOneAndUpdate({ _id: req.body.subcategoryId }, {
+            subcategoryName: req.body.subcategoryName,
+            categoryId: req.body.categoryId
         }).then(() => {
             res.status(200).json({ msg: "Data updated successfully.", status: 1 });
         });
@@ -66,7 +56,5 @@ const updateCategory = async (req, res) => {
         res.status(500).json({ msg: "Error: Data could not be updated", err: error, status: 0 });
     }    
 };
-
-
-
-module.exports = { getAllCategory, addCategory, deleteCategory, updateCategory} 
+module.exports = { addSubCategory, getAllSubCategory, deleteSubCategory, updateSubCategory };
+// module.exports = { getAllSubCategory, addSubCategory, deleteSubCategory, updateSubCategory}

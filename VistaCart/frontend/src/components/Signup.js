@@ -47,7 +47,7 @@ function Signup() {
     axios.post("http://localhost:8080/api/users/addUser", userData)
       .then((response) => {
         window.scrollTo(0, 0);
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           if (response.data.status === 1) {
           // alert('Account created successfully.');

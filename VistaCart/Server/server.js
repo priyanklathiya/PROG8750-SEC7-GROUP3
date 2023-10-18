@@ -24,7 +24,7 @@ app.use(express.static(path.resolve(__dirname + '/public')))
 const port = process.env.PORT || 8080;
 
 app.use(cors({
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000","http://192.168.56.1:3000"],
     methods: ["POST", "GET"],
     credentials: true
 }));
@@ -67,10 +67,15 @@ app.get('/auth/logout', authentication.logout);
 const productRoutes = require('./routes/products');
 const usersRoutes = require('./routes/users');
 const categoryRoutes = require('./routes/category');
+const subCategoryRoutes = require('./routes/subCategory');
+const brands = require('./routes/brands');
 
+// admin panel
 app.use('/api/products', productRoutes);
 app.use('/api/users', usersRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/subcategory', subCategoryRoutes);
+app.use('/api/brands', brands);
 
 app.listen(port, ()=>{
     console.log(`App listening on port: ${port}`);

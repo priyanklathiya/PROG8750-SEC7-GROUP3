@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import axios from "axios";
 
-function Categories() {
+function Brands() {
 
   const [catList, setCatList] = useState([]);
 
@@ -13,35 +13,30 @@ function Categories() {
   }, [])  
   
   const fetchData = () => {
-      axios.get("http://localhost:8080/api/category/getAllCategory")
+      axios.get("http://localhost:8080/api/brands/getAllBrand")
         .then((response) => {
           // console.log(response)
           if (response.data) {
-            setCatList(response.data.allCategory);
+            setCatList(response.data.allbrand);
           }
         })
   }
-
 
   
   const rows =
     catList.length > 0 ? (
       catList.map((cat) => (
         <tr key={cat._id}>
-          <td>{cat.categoryName}</td>
+          <td>{cat.brandName}</td>
           <td>
-            {/* <Link to={`/EditCategory/${cat.id}`}>
-              <button className='btn btn-primary'>Update</button>
-            </Link>  */}
-
-            <Link to="/AddUpdateCategory" className='link-none-css' state={{ type: 'update', catName: cat.categoryName, catId: cat._id }}>
+            <Link to="/AddUpdateBrand" className='link-none-css' state={{ type: 'update', catName: cat.brandName, catId: cat._id }}>
               <button className='btn btn-primary'>
                 Update
               </button> &nbsp;
             </Link>
             <button
                 className='btn btn-danger ml-2'
-                onClick={() => handleDeleteCategory(cat._id)}
+                onClick={() => handleDeleteBrand(cat._id)}
               >
               Delete
             </button>
@@ -56,16 +51,16 @@ function Categories() {
       </tr>
     );
     
-  const handleDeleteCategory = (id) => {
+  const handleDeleteBrand = (id) => {
     console.log(id);
     // return false;
-    let categoryData = {
-      categoryId: id,
+    let brandData = {
+      brandId: id,
     }
 
     axios.defaults.withCredentials = true;
 
-    axios.post("http://localhost:8080/api/category/deleteCategory", categoryData)
+    axios.post("http://localhost:8080/api/brands/deleteBrand", brandData)
       .then((response) => {
         console.log(response);
         if (response.status === 200) {
@@ -84,13 +79,13 @@ function Categories() {
 
   return (
     <main>
-      <h1 className='text-center m-5'>Categories</h1>
+      <h1 className='text-center m-5'>Brands</h1>
 
       <div className='container mt-5 mb-5'>
 
-        <Link to="/AddUpdateCategory" state={{ type: 'new' }} className='admin-grid-section'>
+        <Link to="/AddUpdateBrand" state={{ type: 'new' }} className='admin-grid-section'>
             <button className='btn btn-success'>
-              Add A Category
+              Add A Brand
             </button>
         </Link>
       </div>
@@ -98,7 +93,7 @@ function Categories() {
             <table className="table table-striped table-dark mt-5">
                 <thead>
                     <tr>
-                        <th scope="col">Category Name</th>
+                        <th scope="col">Brand Name</th>
                         <th scope="col">Update / Delete</th>
                     </tr>
                 </thead>
@@ -109,4 +104,4 @@ function Categories() {
   )
 }
 
-export default Categories
+export default Brands

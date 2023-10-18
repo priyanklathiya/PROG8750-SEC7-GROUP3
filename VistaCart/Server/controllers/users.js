@@ -53,7 +53,7 @@ const login = async (req, res) => {
                             } else if (userFound.userType == "seller") {
                                 varusertype = 2;
                             } else {
-                                varusertype = 1;                                
+                                varusertype = 1;
                             }
                             res.status(200).json({ msg: "Login Successful", status: 1, userType: varusertype});
                         } else {

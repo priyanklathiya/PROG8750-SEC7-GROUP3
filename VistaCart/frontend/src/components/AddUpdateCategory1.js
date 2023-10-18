@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
 import axios from "axios";
-import { useLocation } from 'react-router-dom'
+
 function AddUpdateCategory() {
-  const location = useLocation()
-  const { type, catName, catId } = location.state
-// new or update
 
     const [formErrors, setFormErrors] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isFailed, setIsFailed] = useState(false);
     const [categoryName, setCategoryName] = useState("");
+    const [imagePath, setImagePath] = useState("");
     const [successMsg, setSuccessMsg] = useState("");
 
     const HandleSubmitEvent = (e) => {
         e.preventDefault();
         const formErrors = {
-            categoryName: !categoryName
+            categoryName: !categoryName,
+            imagePath: !imagePath
         };
-
+            
         setIsSuccess(false);
         setIsFailed(false);
         setFormErrors({ ...formErrors });
@@ -27,39 +25,9 @@ function AddUpdateCategory() {
 
         const formData = new FormData();
         formData.append("categoryName", categoryName);
+        formData.append("imagePath", imagePath);
 
-        if (type == "new") {
-            // new
-            axios.post("http://localhost:8080/api/category/addCategory", formData,{headers:{"Content-Type" : "application/json"}})
-                .then((response) => { 
-                    window.scrollTo(0, 0);
-                    if (response.status === 200) {
-                        if (response.data.status === 1) {
-                            setIsSuccess(true);
-                            setIsFailed(false);
-                            setSuccessMsg(response.data.msg);
-                            setCategoryName("");
-                        }
-                        else {
-                            setIsSuccess(false);
-                            setIsFailed(true);
-                            setSuccessMsg(response.data.msg);
-                        }
-                    } else {
-                        setIsSuccess(false);
-                        setIsFailed(true);
-                        setSuccessMsg('Something went wrong. Please try again later!');
-                        }
-                }).catch((err) => { 
-                    setIsSuccess(false);
-                    setIsFailed(true);
-                    setSuccessMsg(err.message);
-                })
-        } else if(type == "update"){
-            //update
-        formData.append("categoryId", catId);
-
-                    axios.post("http://localhost:8080/api/category/updateCategory", formData,{headers:{"Content-Type" : "application/json"}})
+        axios.post("http://localhost:8080/api/category/addCategory", formData)
             .then((response) => { 
                 window.scrollTo(0, 0);
                 if (response.status === 200) {
@@ -67,6 +35,8 @@ function AddUpdateCategory() {
                         setIsSuccess(true);
                         setIsFailed(false);
                         setSuccessMsg(response.data.msg);
+                        setCategoryName("");
+                        setImagePath("");
                     }
                     else {
                         setIsSuccess(false);
@@ -81,18 +51,9 @@ function AddUpdateCategory() {
             }).catch((err) => { 
                 setIsSuccess(false);
                 setIsFailed(true);
-                setSuccessMsg(err.message);
+                setSuccessMsg(err);
             })
-        }
     }
-
-    useEffect(() => {
-        if (type == "update") {
-            // get category details here and fill the form fields
-
-            setCategoryName(catName);
-        }
-    }, [type]);
 
     return (
         <main>
@@ -123,13 +84,19 @@ function AddUpdateCategory() {
                             placeholder="Enter category name" />
                         <div className="invalid-feedback">Please enter correct category name</div>
                     </div>
-                    <button type="submit" className="btn btn-primary mt-2">Submit</button> &nbsp;
-                    <Link to="/Categories">
-                        <button className='btn btn-danger  mt-2'>
-                            Go Back
-                        </button>
-                    </Link>
-                    
+                    <div className="form-group col-sm-6">
+                        <label htmlFor="imagePath">Category Name: </label><br/>
+                        <input type="file"
+                            className={`form-control ${formErrors && (formErrors?.imagePath ? "is-invalid" : "is-valid")}`}
+                            id="imagePath"
+                            name="imagePath"
+                            onChange={(e) => setImagePath(e.currentTarget.files[0])}
+                            placeholder="Select an image" />
+                        <div className="invalid-feedback">Please select image</div>
+                    </div>
+
+                    <button type="submit" className="btn btn-primary mt-2">Submit</button>
+
                 </form>
             </div>
         </main>
