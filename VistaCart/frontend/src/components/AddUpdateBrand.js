@@ -22,12 +22,11 @@ function AddUpdateBrand() {
         setIsSuccess(false);
         setIsFailed(false);
         setFormErrors({ ...formErrors });
-
         if (Object.values(formErrors).some((v) => v)) return;
 
         const formData = new FormData();
         formData.append("brandName", brandName);
-
+        
         if (type == "new") {
             // new
             axios.post("http://localhost:8080/api/brands/addBrand", formData,{headers:{"Content-Type" : "application/json"}})
@@ -94,7 +93,7 @@ function AddUpdateBrand() {
     }, [type]);
 
     return (
-        <main>
+        <>
             <div className='container mt-5'>
                  {isSuccess && (
                     <div className="alert alert-success m-3" role="alert">
@@ -131,7 +130,7 @@ function AddUpdateBrand() {
                     
                 </form>
             </div>
-        </main>
+        </>
     )
 }
 

@@ -32,7 +32,7 @@ const deleteBrand = async (req, res) => {
                 }
             })
             .catch((err) => {
-                console.log(err);
+                // console.log(err);
                 res.status(400).json({ msg: "Error: brand cannot be deleted", err: err, status: 0 });
             })
     } catch (error) {
@@ -40,7 +40,6 @@ const deleteBrand = async (req, res) => {
         res.status(400).json({ msg: "Error: brand cannot be deleted", err: error, status: 0 });
     }
 
-    
 }
 
 const updateBrand = async (req, res) => { 
@@ -56,7 +55,5 @@ const updateBrand = async (req, res) => {
         res.status(500).json({ msg: "Error: Data could not be updated", err: error, status: 0 });
     }    
 };
-
-
 
 module.exports = { getAllBrand, addBrand, deleteBrand, updateBrand} 

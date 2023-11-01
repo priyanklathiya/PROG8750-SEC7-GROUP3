@@ -60,9 +60,10 @@ const Header = () => {
       <>
     <header className="header">
       <div className="header-container">
-        <Link to="/">
+        {/* <Link to="/">
           <img className="logo" src={Logo} alt="Vista cart Logo" />
-        </Link>
+        </Link> */}
+         <Link to="/" className='header-link'> VISTACART </Link>
         <div className="search-bar">
           <input type="text" placeholder="Search" />
           <button>Search</button>
@@ -81,16 +82,19 @@ const Header = () => {
             {userType === 0 || userType === 1 ? <Link to="/">Home</Link> : "" }
 
             {(userType === 0 || userType === 1) ? (
-              <div className="categories-dropdown">
-                <button className="categories-button">Categories</button>
-                <div className="categories-content">
-                  <Link to="/" className="category-link">Men</Link>
-                  <Link to="/" className="category-link">Women</Link>
-                </div>
-              </div>
+            
+            <Link to="/shop">Shop</Link>
+              // <div className="categories-dropdown">
+              //   <button className="categories-button">Categories</button>
+              //   <div className="categories-content">
+              //     <Link to="/" className="category-link">Men</Link>
+              //     <Link to="/" className="category-link">Women</Link>
+              //   </div>
+              // </div>
+            
             ) : ""}
             
-            {(userType == 3) ? (
+            {/* {(userType == 3) ? (
               <div className="categories-dropdown">
               <button className="categories-button">Products</button>
               <div className="categories-content">
@@ -98,7 +102,7 @@ const Header = () => {
                 <Link to="/addProduct" className="category-link">Add</Link>
               </div>
             </div>
-            ) : ""}
+            ) : ""} */}
 
             {userType === 0 || userType === 1 ? (
               <Link to="/" className="cart-link">Cart</Link>
@@ -116,10 +120,11 @@ const Header = () => {
               <Link to="/ContactUs" className="login-link">Contact Us</Link>
             ) : ""}
 
-        </nav>
-    </header>
-            
-      <Outlet />
+          </nav>
+        </header>
+        <main>
+            <Outlet />
+        </main>
       </>
   );
 };

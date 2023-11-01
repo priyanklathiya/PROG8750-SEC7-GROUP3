@@ -6,16 +6,36 @@ function footer() {
       
     <footer>
       <div className="column">
-      <h2>Column 1</h2>
-      <p>Random content for column 1.</p>
+        <h2>FIND A STORE </h2>
+        <h2>JOURNAL</h2>
+        <h2>BECOME A MEMBER</h2>
+        <h2>FEEDBACK</h2>
+        <h2>PROMOCODE</h2>
       </div>
+
       <div className="column">
-      <h2>Column 2</h2>
-      <p>Random content for column 2.</p>
+        <h2>GET HELP</h2>
+        <p>Order Status</p>
+        <p>Shipping and Delivery</p>
+        <p>Returns</p>
+        <p>Payment Options</p>
+        <p>Contact Us</p>
       </div>
+
       <div className="column">
-      <h2>Column 3</h2>
-      <p>Random content for column 3.</p>
+        <h2>QUICK LINKS</h2>
+        <p>Terms and Conditions</p>
+        <p>Company Details</p>
+        <p>Privacy & Cookie Policy</p>
+        <p>Cookie Settings</p>
+      </div>
+      
+      <div className="column">
+        <h2>FOLLOW US</h2>
+        <p>Instagram</p>
+        <p>Meta</p>
+        <p>X</p>
+        <p>Youtube</p>
       </div>
     </footer>
     

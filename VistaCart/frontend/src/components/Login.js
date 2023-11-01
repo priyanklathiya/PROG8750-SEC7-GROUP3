@@ -74,7 +74,7 @@ function Login() {
 
   };
   return (
-      <main>
+      <>
         <div className="container">
           <div className="row justify-content-center">
           <div className="col-md-4">
@@ -85,8 +85,9 @@ function Login() {
               )}
               <div className="card mt-5">
                 <div className="card-body">
-                    <h5 className="card-title">
-                        <img className="logo" src={Logo} alt="Vista cart Logo" /> Vistacart
+                <h5 className="card-title text-center">
+                  VISTACART
+                        {/* <img className="logo" src={Logo} alt="Vista cart Logo" /> Vistacart */}
                     </h5>
                     <hr />
                   <form onSubmit={loginEvent}>
@@ -127,7 +128,7 @@ function Login() {
             </div>
           </div>
         </div>
-      </main>
+      </>
   )
 }
 

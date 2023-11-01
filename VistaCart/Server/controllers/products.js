@@ -14,6 +14,10 @@ const addProduct = async (req, res) => {
         productName: req.body.productName,
         productDescription: req.body.productDescription,
         quantity: req.body.quantity,
+        gender: req.body.gender,
+        price: req.body.price,
+        brandId: req.body.brandId,
+        categoryId: req.body.categoryId,
         imagePath: {
             imagePath1: req.body.imagePath.imagePath1,
             imagePath2: req.body.imagePath.imagePath2,

@@ -5,22 +5,32 @@ footer {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    background-color: #f0f0f0;
+    background-color: #000000;
     padding: 20px;
+    color: #b4b4b4;
+}
+
+footer a:hover,
+footer p:hover,
+footer h2:hover
+{
+    color: #ffffff;
+    cursor: pointer;
 }
 
 footer .column {
     flex: 1;
     margin: 10px;
     padding: 10px;
-    background-color: white;
+    background-color: rgb(0, 0, 0);
     border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgb(0, 0, 0);
 }
 
 footer h2 {
     font-size: 1.2em;
     margin-bottom: 10px;
+    color: #ffffff;
 }
 
 footer p {

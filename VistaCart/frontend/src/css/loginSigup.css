@@ -1,11 +1,13 @@
 
 .card{
-    background: #3E4450;
-    color: #ffffff;
-    
+
+    border: 1px solid black;
+    border-radius: 0%;
+    margin: 20px 0;
 }
 
 .btn-custom{
     color: #ffffff;
-    background-color: #e82e30;
+    background-color: #000000;
+    border-radius: 0%;
 }

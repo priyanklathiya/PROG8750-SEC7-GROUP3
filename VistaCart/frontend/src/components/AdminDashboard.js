@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import '../css/admindashboard.css';
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import axios from "axios";
 
 function AdminDashboard() {
@@ -9,30 +9,35 @@ function AdminDashboard() {
 
   return (
     <>
-      <main>
-        <div className='admin-grid mt-5'>
-          <Link to="/Categories" className='admin-grid-section'>
-            <button className='btn-admin-section'>
-              Categories
-            </button>
-          </Link>
-          <Link to="/SubCategories" className='admin-grid-section'>
-            <button className='btn-admin-section'>
-              Sub-Categories
-            </button>
-          </Link>
-          <Link to="/Brands" className='admin-grid-section'>
-            <button className='btn-admin-section'>
-              Brands
-            </button>
-          </Link>
-          <Link to="/Products" className='admin-grid-section'>
-            <button className='btn-admin-section'>
-              Products
-            </button>
-          </Link>
+      <>
+        <div className='vertical-nav'>
+          <ul>
+            <li>
+              <Link to="/Categories">
+                  Categories
+              </Link>
+            </li>
+            <li>
+              <Link to="/SubCategories">
+                  Sub-Categories
+              </Link>
+            </li>
+            <li>
+              <Link to="/Brands">
+                  Brands
+              </Link>
+            </li>
+            <li>
+              <Link to="/Products">
+                  Products
+              </Link>
+            </li>
+          </ul>
         </div>
-      </main>
+        <div className='main-area'>
+          <Outlet />
+        </div>
+      </>
     </>
   )
 }

@@ -97,7 +97,7 @@ function App() {
             
             <Route path="/Brands" element={<Brands />} />
 
-            <Route path="/addProduct" element={<AddUpdateProduct />} />
+            <Route path="/AddUpdateProduct" element={<AddUpdateProduct />} />
 
             <Route path="/AddUpdateSubCategory" element={<AddUpdateSubCategory />} />
 

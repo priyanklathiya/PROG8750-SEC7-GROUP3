@@ -117,7 +117,7 @@ function AddUpdateSubCategory() {
   };
 
     return (
-        <main>
+        <>
             <div className='container mt-5'>
                 <h2>Add / Update Sub Category</h2>
                 <hr />
@@ -174,7 +174,7 @@ function AddUpdateSubCategory() {
                     
                 </form>
             </div>
-        </main>
+        </>
     )
 }
 

@@ -29,7 +29,7 @@ function Brands() {
         <tr key={cat._id}>
           <td>{cat.brandName}</td>
           <td>
-            <Link to="/AddUpdateBrand" className='link-none-css' state={{ type: 'update', catName: cat.brandName, catId: cat._id }}>
+            <Link to="/AddUpdateBrand" className='link-none-css' state={{ type: 'update', bName: cat.brandName, bId: cat._id }}>
               <button className='btn btn-primary'>
                 Update
               </button> &nbsp;
@@ -78,7 +78,7 @@ function Brands() {
   
 
   return (
-    <main>
+    <>
       <h1 className='text-center m-5'>Brands</h1>
 
       <div className='container mt-5 mb-5'>
@@ -100,7 +100,7 @@ function Brands() {
                 <tbody>{rows}</tbody>
             </table>
         </div>
-    </main>
+    </>
   )
 }
 

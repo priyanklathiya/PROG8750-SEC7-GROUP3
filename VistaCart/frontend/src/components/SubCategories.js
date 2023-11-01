@@ -82,7 +82,7 @@ function SubCategories() {
   
 
   return (
-    <main>
+    <>
       <h1 className='text-center m-5'>Sub-categories</h1>
 
       <div className='container mt-5 mb-5'>
@@ -105,7 +105,7 @@ function SubCategories() {
                 <tbody>{rows}</tbody>
             </table>
         </div>
-    </main>
+    </>
   )
 }
 

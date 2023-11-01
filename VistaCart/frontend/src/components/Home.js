@@ -25,7 +25,7 @@ function Home() {
 
 
   return (
-    <main>
+    <>
       <Carousel dynamicHeight="false" autoPlay="true" infiniteLoop="true" interval="1500" showThumbs="false">
         <div>
             <img src={header1} alt='carouselimage1' />
@@ -106,7 +106,7 @@ function Home() {
         </div>
         
         </div>
-    </main>
+    </>
   )
 }
 
