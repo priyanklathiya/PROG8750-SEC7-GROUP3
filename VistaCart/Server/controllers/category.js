@@ -19,6 +19,17 @@ const getAllCategory = async (req, res) => {
     res.status(200).json({ allCategory });
 };
 
+const getCategoryById = async (req, res) => { 
+    const categoryId = req.params.categoryId;
+    const category = await categorymodel.findById(categoryId);
+
+    if (!category) {
+        return res.status(404).json({ error: "Category not found" });
+    }
+
+    res.status(200).json({ category });
+};
+
 const deleteCategory = async (req, res) => {
     // console.log(req.body)
     try {
@@ -69,4 +80,4 @@ const updateCategory = async (req, res) => {
 
 
 
-module.exports = { getAllCategory, addCategory, deleteCategory, updateCategory} 
+module.exports = { getAllCategory, addCategory, deleteCategory, updateCategory, getCategoryById} 

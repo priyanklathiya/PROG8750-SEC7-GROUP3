@@ -66,7 +66,7 @@ function SubCategories() {
 
     axios.post("http://localhost:8080/api/subcategory/deleteSubCategory", categoryData)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         if (response.status === 200) {
           if (response.data.status === 1) { 
             alert('Data Deleted Successfully');

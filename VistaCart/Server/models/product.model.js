@@ -24,12 +24,16 @@ const productSchema = new Schema({
     },
     imagePath: {
         imagePath1: { type: String },
-        imagePath2: { type: String },
-        imagePath3: { type: String }
+        imagePath2: { type: String, default: 'default' },
+        imagePath3: { type: String, default: 'default' }
     },
     createdAt: {
         type: Date,
         default: Date.now
+    },
+    active: {
+        type: Boolean,
+        default: true
     },
 });
 

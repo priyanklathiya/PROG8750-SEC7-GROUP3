@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 import '../css/header.css';
 import Logo from '../images/vistacartlogomini.png';
 import axios from "axios";
-
+import '../css/admindashboard.css';
 
 const Header = () => {
   const [isNavVisible, setIsNavVisible] = useState(false);
@@ -83,7 +83,7 @@ const Header = () => {
 
             {(userType === 0 || userType === 1) ? (
             
-            <Link to="/shop">Shop</Link>
+            <Link to="/Shop">Shop</Link>
               // <div className="categories-dropdown">
               //   <button className="categories-button">Categories</button>
               //   <div className="categories-content">
@@ -122,9 +122,47 @@ const Header = () => {
 
           </nav>
         </header>
-        <main>
-            <Outlet />
-        </main>
+        {userType === 3 ? (
+          <div className='admin-panel'>
+            <div className='vertical-nav'>
+              <ul>
+                <li>
+                  <Link to="/Categories">
+                      Categories
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/SubCategories">
+                      Sub-Categories
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Brands">
+                      Brands
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Products">
+                      Products
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Size">
+                      Size
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/Quantity">
+                      Quantity
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>   
+          ) : ""}
+        <main className="admin-content">
+    <Outlet />
+  </main>
       </>
   );
 };

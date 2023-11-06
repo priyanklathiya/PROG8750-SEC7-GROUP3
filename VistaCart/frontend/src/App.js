@@ -17,6 +17,12 @@ import Products from './components/products.js';
 import SubCategories from './components/SubCategories.js';
 import Brands from './components/Brands.js';
 import AddUpdateBrand from './components/AddUpdateBrand.js';
+import Shop from './components/Shop.js';
+import Size from './components/Size.js';
+import AddUpdateSize from './components/AddUpdateSize.js'; 
+import ProductDetails from './components/ProductDetails.js'; 
+import Quantity from './components/Quantity.js';
+import AddUpdateQuantity from './components/AddUpdateQuantity.js'; 
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 
@@ -60,7 +66,7 @@ function App() {
   const HeaderFooterRoute = () => (
   <>
     <Header />
-    <Footer />
+      <Footer />
   </>
 );
   return (
@@ -69,7 +75,7 @@ function App() {
         
         <Routes>
           
-            <Route path="/" element={<HeaderFooterRoute />}>
+          <Route path="/" element={<HeaderFooterRoute />}>
 
             <Route index element={<Home />} />
 
@@ -102,6 +108,18 @@ function App() {
             <Route path="/AddUpdateSubCategory" element={<AddUpdateSubCategory />} />
 
             <Route path="/AddUpdateBrand" element={<AddUpdateBrand />} />
+
+            <Route path="/Shop" element={<Shop />} />
+
+            <Route path="/ProductDetails" element={<ProductDetails />} />
+
+            <Route path="/Size" element={<Size />} />
+
+            <Route path="/AddUpdateSize" element={<AddUpdateSize />} />
+
+            <Route path="/Quantity" element={<Quantity />} />
+
+            <Route path="/AddUpdateQuantity" element={<AddUpdateQuantity />} />
 
           </Route>
         

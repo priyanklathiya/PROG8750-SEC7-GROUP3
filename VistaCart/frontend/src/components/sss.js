@@ -1,13 +1,150 @@
-import React, { useState, useEffect, useRef  } from 'react';
+  <div className="App">
+      <BrowserRouter>
+        
+        <Routes>
+          
+            <Route path="/" element={<HeaderFooterRoute />}>
+
+            <Route index element={<Home />} />
+
+            {/* <Route path="addEmployee" element={<AddEmployees />} /> */}
+            
+            {/* <Route path="/updateEmployee/:id" element={<UpdateEmployee/>}/> */}
+            
+            <Route path="/Login" element={<Login />} />
+                                 
+            <Route path="/Signup" element={<Signup />} />
+
+            <Route path="/ContactUs" element={<ContactUs />} />
+
+            <Route path="/viewProducts" element={<ViewProduct />} />
+
+            <Route path="/adminDashboard" element={<AdminDashboard />} />
+            
+            <Route path="/Categories" element={<Categories />} />
+
+            <Route path="/AddUpdateCategory" element={<AddUpdateCategory />} />
+
+            <Route path="/Products" element={<Products />} />
+
+            <Route path="/SubCategories" element={<SubCategories />} />
+            
+            <Route path="/Brands" element={<Brands />} />
+
+            <Route path="/AddUpdateProduct" element={<AddUpdateProduct />} />
+
+            <Route path="/AddUpdateSubCategory" element={<AddUpdateSubCategory />} />
+
+            <Route path="/AddUpdateBrand" element={<AddUpdateBrand />} />
+
+          </Route>
+        
+        </Routes>
+
+      </BrowserRouter>
+      
+</div>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .vertical-nav {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    padding-top: 20px;
+    transition: width 0.3s;
+    float: left;
+    z-index: 1;
+    position: absolute;
+    /* Add a smooth transition for width changes */
+}
+
+.vertical-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.vertical-nav li {
+    margin-bottom: 10px;
+}
+
+.vertical-nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s;
+}
+
+.vertical-nav a:hover {
+    background-color: #555;
+}
+
+/* CSS for your main content area */
+.main-area {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    /* Add a smooth transition for margin-left changes */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .vertical-nav {
+        width: 0;
+        /* Hide the vertical navigation bar */
+    }
+
+    .main-area {
+        margin-left: 0;
+        padding: 20px;
+        width: 100%;
+        /* Make the main content full width on small screens */
+        transition: none;
+        /* Remove the transition for width changes */
+        position: relative;
+        /* Restore normal document flow */
+        z-index: 2;
+        /* Place the main area above the navigation bar */
+        background-color: #f5f5f5;
+        /* Add background color for the main content area */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+-------------------------------------------------- Product.js -------------------------------------------------------
+
+
+    
+    import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { useLocation, useNavigate } from 'react-router-dom'
 
 function AddUpdateProduct() {
-
-    const location = useLocation()
-    const { type, productDetails } = location.state;
-    
-    const history = useNavigate();
   
     const [formErrors, setFormErrors] = useState(null);
     const [isSuccess, setIsSuccess] = useState(false);
@@ -28,11 +165,6 @@ function AddUpdateProduct() {
     const [selectedBrand, setSelectedBrand] = useState('');
     const [category, setCategory] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
-    // separate state variables to track new image selections on update
-    const [newImagePath1, setNewImagePath1] = useState(false);
-    const [newImagePath2, setNewImagePath2] = useState(false);
-    const [newImagePath3, setNewImagePath3] = useState(false);
-    const formRef = useRef();
 
     useEffect(() => {
         // Fetch brand data from your Node.js server using Axios
@@ -57,77 +189,20 @@ function AddUpdateProduct() {
             });
     }, []);
 
-    // useEffect(() => {
-    // if (type == "update") {
-    //     setSku(productDetails.sku);
-    //     setProductName(productDetails);
-    //     setProductName(productDetails.productName);
-    //     setProductDescription(productDetails.productDescription);
-    //     setSelectedBrand(productDetails.brandId);
-    //     setSelectedCategory(productDetails.categoryId);
-    //     setPrice(productDetails.price);
-    //     setGender(productDetails.gender);
-    //     setQuantity(productDetails.quantity);
-    //     setImagePath1(productDetails.imagePath.imagePath1);
-    //     setImagePath2(productDetails.imagePath.imagePath2);
-    //     setImagePath3(productDetails.imagePath.imagePath3);
-    // }
-    // }, [type]);
-    
-    useEffect(() => {
-        if (type === "update") {
-            // Set all the state values based on the product details, including image paths
-            setSku(productDetails.sku);
-            setProductName(productDetails.productName);
-            setProductDescription(productDetails.productDescription);
-            setSelectedBrand(productDetails.brandId);
-            setSelectedCategory(productDetails.categoryId);
-            setPrice(productDetails.price);
-            setGender(productDetails.gender);
-            setQuantity(productDetails.quantity);
-
-            // Display the image file names in the corresponding input fields
-            if (productDetails.imagePath) {
-                setImagePath1(productDetails.imagePath.imagePath1 || "");
-                setImagePath2(productDetails.imagePath.imagePath2 || "");
-                setImagePath3(productDetails.imagePath.imagePath3 || "");
-            }
-        }
-    }, [type, productDetails]);
-    
-
-    
     const HandleSubmitEvent = (e) => {
         e.preventDefault();
-        let formErrors = {};
-        if (type === "update") { 
-            formErrors = {
-                sku: !sku,
-                price: !price,
-                productName: !productName,
-                productDescription: !productDescription,
-                quantity: !quantity,
-                gender: !gender,
-                selectedCategory: !selectedCategory,
-                selectedBrand: !selectedBrand,
-                imagePath1: !imagePath1
-            };
+        const formErrors = {
+            sku: !sku,
+            price: !price,
+            productName: !productName,
+            productDescription: !productDescription,
+            quantity: !quantity,
+            gender: !gender,
+            selectedCategory: !selectedCategory,
+            selectedBrand: !selectedBrand,
+            imagePath1: !imagePath1
+        };
             
-        } else {
-            formErrors = {
-                sku: !sku,
-                price: !price,
-                productName: !productName,
-                productDescription: !productDescription,
-                quantity: !quantity,
-                gender: !gender,
-                selectedCategory: !selectedCategory,
-                selectedBrand: !selectedBrand,
-                imagePath1: !imagePath1 && !productDetails.imagePath.imagePath1 && !newImagePath1,
-            };
-            
-        }
-
         setIsSuccess(false);
         setIsFailed(false);
         setFormErrors({ ...formErrors });
@@ -135,83 +210,20 @@ function AddUpdateProduct() {
 
 
         const formData = new FormData();
-        if (type === "update") { 
-            formData.append("productId", productDetails._id);
-            formData.append("sku", sku);
-            formData.append("productName", productName);
-            formData.append("productDescription", productDescription);
-            formData.append("quantity", quantity);
-            formData.append("gender", gender);
-            formData.append("price", price);
-            formData.append("brandId", selectedBrand);
-            formData.append("categoryId", selectedCategory);
-            // formData.append("imagePath1", imagePath1);
-            // formData.append("imagePath2", imagePath2);
-            // formData.append("imagePath3", imagePath3);
-            if (newImagePath1) {
-                formData.append("imagePath1", imagePath1);
-            } else {
-                // Use the original image path if a new image wasn't selected
-                formData.append("imagePath1", productDetails.imagePath.imagePath1 || "");
-            }
-
-            if (newImagePath2) {
-                formData.append("imagePath2", imagePath2);
-            } else {
-                // Use the original image path if a new image wasn't selected
-                formData.append("imagePath2", productDetails.imagePath.imagePath2 || "");
-            }
-
-            if (newImagePath3) {
-                formData.append("imagePath3", imagePath3);
-            } else {
-                // Use the original image path if a new image wasn't selected
-                formData.append("imagePath3", productDetails.imagePath.imagePath3 || "");
-            }
-
-            for (const pair of formData.entries()) {
-                console.log(pair[0] + ': ' + pair[1]);
-            }
-                        
-        axios.post("http://localhost:8080/api/products/updateProduct", formData, { headers: { "Content-Type": "multipart/form-data" } })
-            .then((response) => { 
-                window.scrollTo(0, 0);
-                if (response.status === 200) {
-                    if (response.data.status === 1) {
-                       
-                        history("/Products");
-
-                    }
-                    else {
-                        setIsSuccess(false);
-                        setIsFailed(true);
-                        setSuccessMsg(response.data.msg);
-                    }
-                } else {
-                    setIsSuccess(false);
-                    setIsFailed(true);
-                    setSuccessMsg('Something went wrong. Please try again later!');
-                    }
-            }).catch((err) => { 
-                setIsSuccess(false);
-                setIsFailed(true);
-                setSuccessMsg(err.message);
-            })
-
-        } else {
-            formData.append("sku", sku);
-            formData.append("productName", productName);
-            formData.append("productDescription", productDescription);
-            formData.append("quantity", quantity);
-            formData.append("gender", gender);
-            formData.append("price", price);
-            formData.append("brandId", selectedBrand);
-            formData.append("categoryId", selectedCategory);
-            formData.append("imagePath1", imagePath1);
-            formData.append("imagePath2", imagePath2);
-            formData.append("imagePath3", imagePath3);
-
-            
+        formData.append("sku", sku);
+        formData.append("productName", productName);
+        formData.append("productDescription", productDescription);
+        formData.append("quantity", quantity);
+        formData.append("gender", gender);
+        formData.append("price", price);
+        formData.append("brandId", selectedBrand);
+        formData.append("categoryId", selectedCategory);
+        formData.append("imagePath1", imagePath1);
+        formData.append("imagePath2", imagePath2);
+        formData.append("imagePath3", imagePath3);
+for (const value of formData.values()) {
+  console.log(value);
+}
         axios.post("http://localhost:8080/api/products/addProduct", formData, { headers: { "Content-Type": "multipart/form-data" } })
             .then((response) => { 
                 window.scrollTo(0, 0);
@@ -225,14 +237,11 @@ function AddUpdateProduct() {
                         setQuantity("");
                         setProductName("");
                         setProductDescription("");
-                        setSelectedCategory("");
-                        setSelectedBrand("");
+                        setCategory("");
+                        setBrands("");
                         setImagePath1("");
                         setImagePath2("");
                         setImagePath3("");
-                        formRef.current.reset();
-
-
                     }
                     else {
                         setIsSuccess(false);
@@ -249,9 +258,6 @@ function AddUpdateProduct() {
                 setIsFailed(true);
                 setSuccessMsg(err.message);
             })
-
-        }
-
     }
 
   return (
@@ -271,7 +277,7 @@ function AddUpdateProduct() {
 
                 <h2 className='text-center'>Add / Update Product</h2>
                 <hr/>
-                <form ref={formRef} onSubmit={HandleSubmitEvent}  method="post" encType="multipart/form-data">
+                <form onSubmit={HandleSubmitEvent}  method="post" encType="multipart/form-data">
                     <div className="form-group col-sm-6 margin-center">
                         <label htmlFor="sku">SKU: </label><br/>
                         <input type="text"
@@ -416,46 +422,10 @@ function AddUpdateProduct() {
                             className={`form-control ${formErrors && (formErrors?.imagePath1 ? "is-invalid" : "is-valid")}`}
                             id="imagePath1"
                             name="imagePath1"
-                          onChange={(e) => {
-                              setImagePath1(e.currentTarget.files[0]);
-                                if (type === "update") {
-                                    setNewImagePath1(true);
-                                }
-                          }}
+                            onChange={(e) => setImagePath1(e.currentTarget.files[0])}
                             placeholder="Select an image" />
                         <div className="invalid-feedback">Please select image</div>
-                  </div>
-
-                   {productDetails && productDetails.imagePath && productDetails.imagePath.imagePath1 && (
-                      <div className="form-group col-sm-6 margin-center">
-                        <img
-                            src={`http://localhost:8080/Images/products/${productDetails.imagePath.imagePath1}`}
-                            alt="Current Product Image"
-                            height="100"
-                          />
-                          <div>
-                            <input
-                                type="checkbox"
-                                id="removeImage1"
-                                name="removeImage1"
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        // Clear the imagePath1 state to indicate that the image should be removed
-                                        setImagePath1("");
-                                        setNewImagePath1(true);
-
-                                    } else {
-                                        setImagePath1(productDetails.imagePath.imagePath1);
-                                        setNewImagePath1(false);
-                                    }
-                                }}
-                            />
-                            <label htmlFor="removeImage1">Remove Image</label>
-                        </div>
-                      </div>
-                      
-                    )}
-                  
+                    </div>
                   
                     <div className="form-group col-sm-6 margin-center">
                         <label htmlFor="imagePath2">Image 2 </label><br/>
@@ -463,44 +433,10 @@ function AddUpdateProduct() {
                             className={`form-control`}
                             id="imagePath2"
                             name="imagePath2"
-                          onChange={(e) => {
-                              setImagePath2(e.currentTarget.files[0]);
-                              if (type === "update") {
-                                    setNewImagePath2(true);
-                                }
-                          }}
+                            onChange={(e) => setImagePath2(e.currentTarget.files[0])}
                             placeholder="Select an image" />
                         <div className="invalid-feedback">Please select image</div>
-                  </div>
-                  
-                  {productDetails && productDetails.imagePath && productDetails.imagePath.imagePath2 && productDetails.imagePath.imagePath2 !== 'default' && (
-                         <div className="form-group col-sm-6 margin-center">
-                            <img
-                                src={`http://localhost:8080/Images/products/${productDetails.imagePath.imagePath2}`}
-                                alt="Current Product Image"
-                                height="100"
-                            />
-                          <div>
-                            <input
-                                type="checkbox"
-                                id="removeImage2"
-                                name="removeImage2"
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        // Clear the imagePath2 state to indicate that the image should be removed
-                                        setImagePath2("");
-                                        setNewImagePath2(true);
-
-                                    } else {
-                                        setImagePath2(productDetails.imagePath.imagePath2);
-                                        setNewImagePath2(false);
-                                    }
-                                }}
-                            />
-                            <label htmlFor="removeImage2">Remove Image</label>
-                        </div>
-                        </div>
-                    )}
+                    </div>
                   
                     <div className="form-group col-sm-6 margin-center">
                         <label htmlFor="imagePath3">Image 3 </label><br/>
@@ -508,47 +444,13 @@ function AddUpdateProduct() {
                             className={`form-control`}
                             id="imagePath3"
                             name="imagePath3"
-                          onChange={(e) => {
-                              setImagePath3(e.currentTarget.files[0]);
-                              if (type === "update") {
-                                    setNewImagePath3(true);
-                                }
-                          }}
+                            onChange={(e) => setImagePath3(e.currentTarget.files[0])}
                             placeholder="Select an image" />
                         <div className="invalid-feedback">Please select image</div>
-                  </div>
-                  
-                  {productDetails && productDetails.imagePath && productDetails.imagePath.imagePath3 && productDetails.imagePath.imagePath3 !== 'default' && (
-                         <div className="form-group col-sm-6 margin-center">
-                            <img
-                                src={`http://localhost:8080/Images/products/${productDetails.imagePath.imagePath3}`}
-                                alt="Current Product Image"
-                                height="100"
-                            />
-                          <div>
-                            <input
-                                type="checkbox"
-                                id="removeImage3"
-                                name="removeImage3"
-                                onChange={(e) => {
-                                    if (e.target.checked) {
-                                        // Clear the imagePath3 state to indicate that the image should be removed
-                                        setImagePath3("");
-                                        setNewImagePath3(true);
-                                    } else {
-                                        setImagePath3(productDetails.imagePath.imagePath3);
-                                        setNewImagePath3(false);
-                                    }
-                                }}
-                            />
-                            <label htmlFor="removeImage3">Remove Image</label>
-                        </div>
-                        </div>
-                    )}
+                    </div>
                   <div className='col-sm-6 margin-center'>
                     <button type="submit" className="btn btn-primary mt-2 mb-4">Submit</button>
                   </div>
-
                 </form>
             </div>
         </>
@@ -556,3 +458,70 @@ function AddUpdateProduct() {
 }
 
 export default AddUpdateProduct
+
+
+
+
+---------------------------------------------------
+    
+    const express = require( "express");
+const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Images/products');
+    },
+    filename: (req, file, cb) => {
+        cb(null, Date.now()  + '_' +  file.originalname);
+    }
+})
+
+const upload = multer({
+    storage: storage,
+})
+
+
+const { getAllProducts, addProduct } = require("../controllers/products");
+
+router.route("/").get(getAllProducts);
+
+// router.route("/addProduct").post(upload.fields([ { name: 'imagePath1', maxCount: 1 }, { name: 'imagePath2', maxCount: 1 }, { name: 'imagePath3', maxCount: 1 }, ]), addProduct);
+
+router.route("/addProduct").post((req, res, next) => { 
+    
+    // Check if imagePath1 file is present
+    if (!req.file || !req.file.imagePath1) {
+        return res.status(400).json({ status: 0, msg: 'Please provide imagePath1.' });
+    }
+
+    // Include imagePath1 in the upload
+    const uploadFields = [{ name: 'imagePath1', maxCount: 1 }];
+
+    // Check if imagePath2 file is present and add it to the uploadFields
+    if (req.file.imagePath2) {
+        uploadFields.push({ name: 'imagePath2', maxCount: 1 });
+    }
+
+    // Check if imagePath3 file is present and add it to the uploadFields
+    if (req.file.imagePath3) {
+        uploadFields.push({ name: 'imagePath3', maxCount: 1 });
+    }
+
+    upload.fields(uploadFields)(req, res, next);
+}, addProduct);
+
+module.exports = router;
+
+
+
+------------------------proxy ------------------------------
+"proxy": {
+    "":{
+      "target":"http://localhost:8080"
+    },
+    "/imgs/products":{
+      "target":"http://localhost:8080/Images/products"
+    }
+  },

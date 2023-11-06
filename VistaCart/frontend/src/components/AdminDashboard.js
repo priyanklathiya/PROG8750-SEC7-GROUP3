@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import '../css/admindashboard.css';
 import { Link, Outlet } from 'react-router-dom';
 import axios from "axios";
+
 
 function AdminDashboard() {
   
@@ -9,35 +9,7 @@ function AdminDashboard() {
 
   return (
     <>
-      <>
-        <div className='vertical-nav'>
-          <ul>
-            <li>
-              <Link to="/Categories">
-                  Categories
-              </Link>
-            </li>
-            <li>
-              <Link to="/SubCategories">
-                  Sub-Categories
-              </Link>
-            </li>
-            <li>
-              <Link to="/Brands">
-                  Brands
-              </Link>
-            </li>
-            <li>
-              <Link to="/Products">
-                  Products
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className='main-area'>
-          <Outlet />
-        </div>
-      </>
+      <h1 className='text-center'>Admin Panel</h1>
     </>
   )
 }

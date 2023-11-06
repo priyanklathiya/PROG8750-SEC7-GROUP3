@@ -4,6 +4,7 @@
   "private": true,
   "allowedHosts": "all",
   "proxy": "http://localhost:8080",
+  
   "dependencies": {
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@testing-library/jest-dom": "^5.17.0",

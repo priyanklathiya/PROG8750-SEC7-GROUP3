@@ -5,3 +5,7 @@ main{
 .link-none-css{
     text-decoration: none;
 }
+
+.margin-center{
+    margin: auto;
+}

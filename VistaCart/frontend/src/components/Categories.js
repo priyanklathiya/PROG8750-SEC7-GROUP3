@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 import axios from "axios";
+import AdminDashboard from './AdminDashboard';
+
 
 function Categories() {
 
@@ -84,28 +86,31 @@ function Categories() {
 
   return (
     <>
-      <h1 className='text-center m-5'>Categories</h1>
 
-      <div className='container mt-5 mb-5'>
 
-        <Link to="/AddUpdateCategory" state={{ type: 'new' }} className='admin-grid-section'>
-            <button className='btn btn-success'>
+        <h1 className="text-center m-5">Categories</h1>
+
+        <div className="container mt-5 mb-5">
+          <Link to="/AddUpdateCategory" state={{ type: 'new' }} className="admin-grid-section">
+            <button className="btn btn-success">
               Add A Category
             </button>
-        </Link>
-      </div>
-      <div className="container">
-            <table className="table table-striped table-dark mt-5">
-                <thead>
-                    <tr>
-                        <th scope="col">Category Name</th>
-                        <th scope="col">Update / Delete</th>
-                    </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
+          </Link>
         </div>
-    </>
+
+        <div className="container">
+          <table className="table table-striped table-dark mt-5">
+            <thead>
+              <tr>
+                <th scope="col">Category Name</th>
+                <th scope="col">Update / Delete</th>
+              </tr>
+            </thead>
+            <tbody>{rows}</tbody>
+          </table>
+        </div>
+</>
+
   )
 }
 

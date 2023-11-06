@@ -7,7 +7,8 @@ import header1 from '../images/HomeCarousel_3.jpg';
 import header2 from '../images/homecarousel2.jpg';
 import header3 from '../images/homecarousel3.avif';
 import axios from "axios";
-
+import '../css/carouselComponent.css';
+import FeaturedCategories from './FeaturedCategories';
 
 
 function Home() {
@@ -24,22 +25,36 @@ function Home() {
   // }, [])
 
 
+
+
+  
+
+
   return (
     <>
-      <Carousel dynamicHeight="false" autoPlay="true" infiniteLoop="true" interval="1500" showThumbs="false">
+      <div className="carousel-container">
+      <Carousel
+        dynamicHeight={false}
+        autoPlay={true}
+        infiniteLoop={true}
+        interval={1500}
+        showThumbs={false}
+      >
         <div>
-            <img src={header1} alt='carouselimage1' />
-            {/* <p className="legend">Legend 1</p> */}
+          <img src={header1} alt="carouselimage1" />
+          {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-            <img src={header2} alt='carouselimage2' />
-            {/* <p className="legend">Legend 2</p> */}
+          <img src={header2} alt="carouselimage2" />
+          {/* <p className="legend">Legend 2</p> */}
         </div>
         <div>
-            <img src={header3} alt='carouselimage3' />
-            {/* <p className="legend">Legend 3</p> */}
+          <img src={header3} alt="carouselimage3" />
+          {/* <p className="legend">Legend 3</p> */}
         </div>
       </Carousel>
+      </div>
+      
       <h2 className='text-center mt-5 mb-0'>Top Deals</h2>
         <br/>
       <div className="scroll-container">
@@ -105,7 +120,14 @@ function Home() {
           <p className='price'>$ 99.99 </p>
         </div>
         
-        </div>
+      </div>
+
+
+      <div className="categories-section">
+        <h2 className="text-center category-title">Categories</h2>
+        <FeaturedCategories />
+      </div>
+
     </>
   )
 }
