@@ -524,4 +524,10 @@ module.exports = router;
     "/imgs/products":{
       "target":"http://localhost:8080/Images/products"
     }
-  },
+},
+  
+--------------------------------------------
+
+  // formData.forEach((value, key) => {
+  //   console.log(`Key: ${key}, Value: ${value}`);
+  // });

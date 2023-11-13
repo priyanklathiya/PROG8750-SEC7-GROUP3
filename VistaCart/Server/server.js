@@ -71,6 +71,7 @@ const subCategoryRoutes = require('./routes/subCategory');
 const brands = require('./routes/brands');
 const size = require('./routes/size');
 const quantity = require('./routes/quantity');
+const home = require('./routes/home');
 
 // admin panel
 app.use('/api/products', productRoutes);
@@ -80,6 +81,7 @@ app.use('/api/subcategory', subCategoryRoutes);
 app.use('/api/brands', brands);
 app.use('/api/size', size);
 app.use('/api/quantity', quantity);
+app.use('/api/home', home);
 
 app.listen(port, ()=>{
     console.log(`App listening on port: ${port}`);
